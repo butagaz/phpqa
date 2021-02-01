@@ -14,7 +14,7 @@ class Phpcpd extends \Edge\QA\Tools\Tool
     public function __invoke()
     {
         $args = array(
-            'progress' => '',
+            'verbose' => '',
             $this->options->ignore->bergmann(),
             $this->options->getAnalyzedDirs(' '),
             'min-lines' => $this->config->value('phpcpd.minLines'),
@@ -22,12 +22,12 @@ class Phpcpd extends \Edge\QA\Tools\Tool
         );
         $phpcpdNames = array_map(
             function ($extension) {
-                return "*.{$extension}";
+                return ".{$extension}";
             },
             array_filter(explode(',', $this->config->csv('phpqa.extensions')))
         );
         if ($phpcpdNames) {
-            $args['names'] = \Edge\QA\escapePath(implode(',', $phpcpdNames));
+            $args['suffix'] = \Edge\QA\escapePath(implode(',', $phpcpdNames));
         }
         if ($this->options->isSavedToFiles) {
             $args['log-pmd'] = $this->tool->getEscapedXmlFile();
