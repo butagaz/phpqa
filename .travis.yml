@@ -27,8 +27,6 @@ install:
         composer require phpunit/phpunit:~7.0 --dev && composer require sebastian/phpcpd;
         # 4) install suggested tools
         bin/suggested-tools.sh install;
-        # 5) hotfix CI issues - see commit 48dd427
-        composer require sensiolabs/security-checker:~5;
     fi
     # test installing suggested tools like docker image
     if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" ]]; then
